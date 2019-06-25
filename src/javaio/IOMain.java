@@ -12,6 +12,8 @@ public class IOMain {
 
     private static final String FILE_NAME = "GradeBook.txt";
     private static final String BINARY_NAME = "Students.bin";
+    private static final String BUFFERED_FILE = "Buffered.txt";
+
     public static void main(String[] args) throws IOException {
 
         //создаем map (коллекция, состоящая из пар ключ-значение)
@@ -19,16 +21,23 @@ public class IOMain {
 
         Reader reader = new Reader();
         Writer writer = new Writer();
-
-        writer.writeFile(grades, FILE_NAME);
+//
+//        writer.writeFile(grades, FILE_NAME);
 //        reader.readFile(FILE_NAME);
 
-        //записывает форматированный текст в файл
-//        writer.writeWithFormatter();
+//        processGrads(grades, writer, BINARY_NAME);
+//        outputObjects(reader, BINARY_NAME);
 
+        FileUtils utils = new FileUtils();
+//        utils.printIOFileDetails("./");
+//        utils.printNioFileDetails(FILE_NAME);
 
-        processGrads(grades, writer, BINARY_NAME);
-        outputObjects(reader, BINARY_NAME);
+//        reader.readFileInFull(FILE_NAME);
+//        reader.nioReaderFileWithBuffer(FILE_NAME);
+//        writer.nioWriteWitBuffer(BUFFERED_FILE);
+
+        reader.nioReaderFileWithBuffer(FILE_NAME);
+        writer.nioWriteWithStream(BUFFERED_FILE);
 
     }
 

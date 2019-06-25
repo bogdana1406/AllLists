@@ -1,10 +1,9 @@
 package javaio;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +46,42 @@ public class Reader {
         return students;
 
     }
+
+   public void readFileInFull(String fileName) throws IOException {
+        Path path = Paths.get(fileName);
+
+       List<String> lines = Files.readAllLines(path);
+
+       for (String l: lines) {
+           System.out.println(l);
+       }
+   }
+
+   public void nioReaderFileWithBuffer(String fileName) throws IOException {
+        Path path = Paths.get(fileName);
+
+       Charset charset = Charset.forName("UTF-8");
+        try(BufferedReader reader = Files.newBufferedReader(path, charset)) {
+
+            String s;
+            while ((s = reader.readLine()) != null) {
+
+                System.out.println(s);
+            }
+        }
+   }
+
+   public void nioReadWithStream(String fileName) throws IOException {
+        Path path = Paths.get(fileName);
+
+        try(InputStream in = Files.newInputStream(path)) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String s;
+
+            while ((s = reader.readLine()) != null) {
+                System.out.println(s);
+            }
+        }
+   }
 
 }

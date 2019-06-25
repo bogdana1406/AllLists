@@ -37,7 +37,7 @@ public class TreeMapRunner {
 
     }
 
-    private static NavigableMap<AverageStudentGrade, Set<SubjectGrade>> createGrades() {
+    public static NavigableMap<AverageStudentGrade, Set<SubjectGrade>> createGrades() {
         //инициализируем HashSet (для одного студента - Алекса) (сеты содержат одно значение - не пару). данный сет заполняется объектами типа SubjectGrade. у объекта 2 поля: предмет и оценка.
         Set<SubjectGrade> alexGrades = new HashSet<>();
         alexGrades.add(new SubjectGrade("Mathematics", 89));
